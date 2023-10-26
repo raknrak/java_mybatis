@@ -1,38 +1,32 @@
+package src;
+
 import java.util.Date;
 
 public class Board {
-	private int bno;
-	private String btitle;
-	private String bcontent;
-	private String bwriter;
-	private Date bdate;
+	private int bno; //게시물 번호
+	@lombok.Setter
+	@lombok.Getter
+	private String btitle;//게시물 제목
+	private String bcontent;//게시물 내용
+	private String bwriter;//게시물 작성자
+	private Date bdate;//게시물 작성일
 
-	public Board(int bno, String btitle, String bcontent, String bwriter, Date date) {
+	//모든 필드를 초기화하는 생성자
+	public Board(int bno, String btitle, String bcontent, String bwriter, Date bdate) {
+		super();// 상위 클래스 호출
 		this.bno = bno;
 		this.btitle = btitle;
 		this.bcontent = bcontent;
 		this.bwriter = bwriter;
 		this.bdate = bdate;
 	}
-
-	public Board(int bno, String btitle, String bcontent, String bwriter) {
-
-		this.bno = bno;
+	//일부 필드를 초기화하는 생성자
+	public Board(String btitle, String bcontent, String bwriter, Date bdate) {
+		super();
 		this.btitle = btitle;
 		this.bcontent = bcontent;
 		this.bwriter = bwriter;
-
-	}
-
-	public Board(String btitle, String bcontent, String bwriter) {
-		this.btitle = btitle;
-		this.bcontent = bcontent;
-		this.bwriter = bwriter;
-
-	}
-
-	public Board(int bno) {
-		this.bno = bno;
+		this.bdate = bdate;
 
 	}
 
@@ -42,14 +36,6 @@ public class Board {
 
 	public void setBno(int bno) {
 		this.bno = bno;
-	}
-
-	public String getBtitle() {
-		return btitle;
-	}
-
-	public void setBtitle(String btitle) {
-		this.btitle = btitle;
 	}
 
 	public String getBcontent() {
@@ -77,8 +63,4 @@ public class Board {
 	}
 }
 
-
-
-
-
-
+	

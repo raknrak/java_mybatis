@@ -1,14 +1,12 @@
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+package src;
+
 
 import java.io.InputStream;
 import java.util.ArrayList;
 
 public class DBUtil {
 
-	String url = "dbc:mariadb://127.0.0.1:3306/addr_prj";
+	String url = "dbc:mariadb://127.0.0.1:3306/java_prj";
 	String user = "root";
 	String pass = "12345";
 	SqlSessionFactory sqlSessionFactory;
@@ -32,27 +30,20 @@ public class DBUtil {
 		
 		return boardList;
 	}
-	public ArrayList<Board> readBoardlist(int bno){
-		SqlSession session = sqlSessionFactory.openSession();
-		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		ArrayList<Board> boardList = mapper.readBoardlist(bno);
-
-		return boardList;
-	}
 	
-	public void insertBoard(String btitle, String bcontent, String bwriter) {
+	public void insertBoard(String name, String address, String phone) {
 		SqlSession session = sqlSessionFactory.openSession();
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		Board board = new Board(btitle, bcontent, bwriter);
+		Board board = new Board(name, address, phone);
 		mapper.insertBoard(board);
 		
 		session.commit(); // update, delete, insert
 	}
 	
-	public void updateBoard(int bno, String btitle, String bcontent, String bwriter) {
+	public void updateBoard(int bno, String name, String address, String phone) {
 		SqlSession session = sqlSessionFactory.openSession();
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		Board board = new Board(bno, btitle, bcontent, bwriter);
+		Board board = new Board(bno, name, address, phone);
 		mapper.updateBoard(board);
 		
 		session.commit(); // update, delete, insert
@@ -65,14 +56,6 @@ public class DBUtil {
 		
 		session.commit(); // update, delete, insert
 	}
-	public void clearBoard(){
-		SqlSession session = sqlSessionFactory.openSession();
-		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		mapper.clearBoard();
-
-		session.commit();
-	}
-
 	
 }
 

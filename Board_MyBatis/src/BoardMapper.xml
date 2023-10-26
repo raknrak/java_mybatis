@@ -14,40 +14,26 @@
     <insert id="insertBoard" parameterType="Board">
     	INSERT INTO boards
     	SET
-		btitle = #{btitle},
-		bcontent = #{bcontent},
-		bwriter = #{bwriter}
-		bdate = #{bdate}
+		title = #{title},
+		content = #{content},
+		writer = #{writer}
+		date = #{date}
 
     </insert >
-
-	<select id="readBoard" resultType="Board" parameterType="int">
-		SELECT *
-		FROM boards
-		WHERE bno =#{bno}
-	</select>
-
-	<delete id="deleteBoard" parameterType="int">
-		DELETE FROM boards
-		WHERE no = #{bno}
-	</delete>
-
-	<delete id="clearBoard" parameterType="Board">
-		DELETE FROM boards
-		WHERE no = #{bno}
-	</delete>
-
+  	
   	<update id="updateBoard" parameterType="Board">
   		UPDATE boards
   		SET
-		btitle = #{btitle},
-		bcontent = #{bcontent},
-		bwriter = #{bwriter}
-		bdate = #{bdate}
-    	WHERE no = #{bno}
+		title = #{title},
+		content = #{content},
+		writer = #{writer}
+		date = #{date}
+    	WHERE no = #{no}
   	</update>
   	
-
-
+  	<delete id="deleteBoard" parameterType="int">
+  		DELETE FROM boards
+  		WHERE no = #{no}
+  	</delete>
   
 </mapper>
